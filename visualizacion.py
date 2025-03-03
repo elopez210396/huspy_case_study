@@ -31,11 +31,11 @@ menu = option_menu('',options=['Propiedades','Estadísticas','Clientes'],orienta
                                 'nav-link-selected':{'background-color':'#919ca1'}})
 
 if menu == 'Propiedades':
-    col1, col2, col3, col4, col5 = st.columns([1,1,1,1,1])
+    col1, col2, col3, col4, col5 = st.columns([1,0.7,1.3,1,1])
     with col1:
         st.metric('Total de propiedades', propiedades.shape[0])
     
-    with col4:
+    with col3:
         st.metric('Total de propiedades Madrid', propiedades_madrid.shape[0])
     col10, col11, col12 = st.columns([1,1,1])
     with col10:
@@ -52,6 +52,12 @@ if menu == 'Propiedades':
         st.plotly_chart(fig)
     
     with col12:
+        ventas_madrid = propiedades_madrid[propiedades_madrid['Venta o Alquiler'] == 'Venta']
+        fig = px.histogram(ventas_madrid, x="Precio", nbins=30, title="Precios de venta en Madrid")
+
+        # Mostrar en Streamlit
+        st.plotly_chart(fig)
+    with col11:
         
         zonas_count = propiedades_madrid['Zona'].value_counts().reset_index()
         zonas_count.columns = ['Zona', 'Cantidad']
