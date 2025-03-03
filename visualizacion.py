@@ -64,7 +64,7 @@ if menu == 'Propiedades':
 
         # Mostrar en Streamlit
         st.plotly_chart(fig)
-    st.write(propiedades.head(5))
+
 
 if menu == 'Estadísticas':
     ids_propiedades = propiedades_madrid['Codigo de la propiedad'].unique()
